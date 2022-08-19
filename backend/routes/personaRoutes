@@ -1,9 +1,8 @@
 const express = require('express')
 const router = express.Router()
+const {getPersonas} = require('../Controllers/pController')
 
-router.get('/', (req, res) => {
-    res.status(200).json({ message: 'Here are your personas!'})
-})
+router.get('/', getPersonas)
 
 router.post('/', (req, res) => {
     res.status(200).json({ message: 'Create a persona!'})
