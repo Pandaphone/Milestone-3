@@ -1,1 +1,1 @@
-GET http://localhost:7000/api/persona/
+DELETE http://localhost:7000/api/persona/4521
