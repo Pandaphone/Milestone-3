@@ -9,7 +9,13 @@ const getPersonas = (req, res) => {
 //Route: /api/persona/
 //Private.
 const createPersona = (req, res) => {
-    res.status(200).json({ message: 'Create a persona!'})
+    if(!req.body.text){
+       res.status(400)
+       throw new Error('Submit a proper persona!')
+   }
+    else{
+        res.status(200).json({ message: 'Create a persona!'})
+    }
 }
 
 //Updates the information of a user's Persona via a PUT Request. 
