@@ -7,6 +7,11 @@ const personaSchema = mongoose.Schema({
         minlength: 1,
         maxlength: 50,
     },
-    Image: String,
-    Description: String,
+    description: String,
+    uNames: String,
+    pWords: String,
+}, {
+    timestamps: true,
 })
+
+module.exports = mongoose.model('PersonaModel', personaSchema)
