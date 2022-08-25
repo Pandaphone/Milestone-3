@@ -2,11 +2,9 @@
   "name": "milestone-3",
   "version": "1.0.0",
   "description": "Final Class Project!",
-  "main": "server.js",
+  "main": "./backend/server.js",
   "scripts": {
-    "start": "node backend/server.js",
-    "server": "nodemon backend/server.js",
-    "client": "npm start --prefix frontend/App.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Shawn Greene",
   "license": "ISC",
