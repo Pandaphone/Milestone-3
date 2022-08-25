@@ -1,6 +1,12 @@
 const mongoose = require('mongoose')
 
-const personaSchema = mongoose.Schema({
+const personaSchema = mongoose.Schema(
+    {
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'UserModel',
+    },
     nickname: {
         type: String,
         required: true,
