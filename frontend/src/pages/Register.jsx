@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {useNavigate} from 'react-router-dom'
 import {toast} from 'react-toastify'
 import {register, reset} from '../features/auth/authSlice'
+import Spinner from '../components/Spinner'
 
 
 
@@ -19,8 +20,25 @@ function Register() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const {user, isLoading, usError, isSuccess, message} = useSelector(
+    const {user, isLoading, isError, isSuccess, message} = useSelector(
         (state) => state.auth)
+    
+    
+    
+    //
+    useEffect(() => {
+        
+        if(isError) {
+            toast.error(message)
+        }
+
+        if(isSuccess || user){
+            navigate('/')
+        }
+
+        dispatch(reset())
+
+    }, [user, isError, isSuccess, message, navigate, dispatch])
 
     //Allows for typing within the input boxes
     const onnChange = (e) => {
@@ -33,8 +51,24 @@ function Register() {
     //Ignores the default submit actions
     const onnSubmit = (e) => {
         e.preventDefault()
+
+        if(password !== passwordConfirm) {
+            toast.error('Passwords do not match!')
+        } else{
+            const userData = {
+                name, 
+                email, 
+                password,
+            }
+
+
+            dispatch(register(userData))
+        }
     }
 
+    if(isLoading){
+        return <Spinner/>
+    }
 
   return <>
     <section className="heading">
@@ -62,7 +96,8 @@ function Register() {
              type="email" 
              className="form-control" 
              id='email' 
-             name='email' value={email} 
+             name='email' 
+             value={email} 
              placeholder='Enter an email!' 
              onChange={onnChange} 
             />
@@ -83,8 +118,8 @@ function Register() {
              <input 
              type="password" 
              className="form-control" 
-             id='password2' 
-             name='password2' value={passwordConfirm} 
+             id='passwordConfirm' 
+             name='passwordConfirm' value={passwordConfirm} 
              placeholder='Enter your password again!' 
              onChange={onnChange} 
             />
