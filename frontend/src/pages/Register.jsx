@@ -14,7 +14,9 @@ function Register() {
 
     const onnChange = () => {}
 
-    const onnSubmit = () => {}
+    const onnSubmit = (e) => {
+        e.preventDefault()
+    }
 
 
   return <>
