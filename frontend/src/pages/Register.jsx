@@ -14,6 +14,8 @@ function Register() {
 
     const onnChange = () => {}
 
+    const onnSubmit = () => {}
+
 
   return <>
     <section className="heading">
@@ -24,7 +26,7 @@ function Register() {
     </section>
 
     <section className="form">
-        <form>
+        <form onSubmit={onnSubmit}>
             <div className="form-group">
              <input 
              type="text" 
@@ -67,6 +69,10 @@ function Register() {
              placeholder='Enter your password again!' 
              onChange={onnChange} 
             />
+            </div>
+
+            <div className="form-group">
+             <button type="submit" className='btn btn-block'>Submit!</button>
             </div>
         </form>
     </section>
