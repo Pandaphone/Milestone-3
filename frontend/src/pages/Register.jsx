@@ -26,46 +26,46 @@ function Register() {
     <section className="form">
         <form>
             <div className="form-group">
-            <input 
-            type="text" 
-            className="form-control" 
-            id='name' 
-            name='name' value={name} 
-            placeholder='Enter a name!' 
-            onChange={onnChange} 
+             <input 
+             type="text" 
+             className="form-control" 
+             id='name' 
+             name='name' value={name} 
+             placeholder='Enter a name!' 
+             onChange={onnChange} 
             />
             </div>
             
             <div className="form-group">
-            <input 
-            type="text" 
-            className="form-control" 
-            id='name' 
-            name='name' value={name} 
-            placeholder='Enter a name!' 
-            onChange={onnChange} 
+             <input 
+             type="email" 
+             className="form-control" 
+             id='email' 
+             name='email' value={email} 
+             placeholder='Enter an email!' 
+             onChange={onnChange} 
             />
             </div>
 
             <div className="form-group">
-            <input 
-            type="text" 
-            className="form-control" 
-            id='name' 
-            name='name' value={name} 
-            placeholder='Enter a name!' 
-            onChange={onnChange} 
+             <input 
+             type="password" 
+             className="form-control" 
+             id='password' 
+             name='password' value={password} 
+             placeholder='Enter a password!' 
+             onChange={onnChange} 
             />
             </div>
 
             <div className="form-group">
-            <input 
-            type="text" 
-            className="form-control" 
-            id='name' 
-            name='name' value={name} 
-            placeholder='Enter a name!' 
-            onChange={onnChange} 
+             <input 
+             type="password" 
+             className="form-control" 
+             id='password2' 
+             name='password2' value={passwordConfirm} 
+             placeholder='Enter your password again!' 
+             onChange={onnChange} 
             />
             </div>
         </form>
