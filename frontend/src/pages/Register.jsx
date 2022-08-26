@@ -12,7 +12,7 @@ function Register() {
 
     const { name, email, password, passwordConfirm } = formData
 
-
+    const onnChange = () => {}
 
 
   return <>
@@ -23,7 +23,53 @@ function Register() {
         <p>Create an account with Persona!</p>
     </section>
 
-    <section className="form"></section>
+    <section className="form">
+        <form>
+            <div className="form-group">
+            <input 
+            type="text" 
+            className="form-control" 
+            id='name' 
+            name='name' value={name} 
+            placeholder='Enter a name!' 
+            onChange={onnChange} 
+            />
+            </div>
+            
+            <div className="form-group">
+            <input 
+            type="text" 
+            className="form-control" 
+            id='name' 
+            name='name' value={name} 
+            placeholder='Enter a name!' 
+            onChange={onnChange} 
+            />
+            </div>
+
+            <div className="form-group">
+            <input 
+            type="text" 
+            className="form-control" 
+            id='name' 
+            name='name' value={name} 
+            placeholder='Enter a name!' 
+            onChange={onnChange} 
+            />
+            </div>
+
+            <div className="form-group">
+            <input 
+            type="text" 
+            className="form-control" 
+            id='name' 
+            name='name' value={name} 
+            placeholder='Enter a name!' 
+            onChange={onnChange} 
+            />
+            </div>
+        </form>
+    </section>
   </>
   
 }
