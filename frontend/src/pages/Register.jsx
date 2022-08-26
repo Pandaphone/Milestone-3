@@ -12,8 +12,15 @@ function Register() {
 
     const { name, email, password, passwordConfirm } = formData
 
-    const onnChange = () => {}
+    //Allows for typing within the input boxes
+    const onnChange = (e) => {
+        setFormData((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+        }))
+    }
 
+    //Ignores the default submit actions
     const onnSubmit = (e) => {
         e.preventDefault()
     }
