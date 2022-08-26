@@ -13,7 +13,18 @@ function Register() {
     const { name, email, password, passwordConfirm } = formData
 
 
-  return <div>Register</div>
+
+
+  return <>
+    <section className="heading">
+        <h1>
+            Register!
+        </h1>
+        <p>Create an account with Persona!</p>
+    </section>
+
+    <section className="form"></section>
+  </>
   
 }
 
