@@ -1,9 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
+
 
 function Register() {
-  return (
-    <div>Register</div>
-  )
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        password: '',
+        passwordConfirm: '',
+    })
+
+    const { name, email, password, passwordConfirm } = formData
+
+
+  return <div>Register</div>
+  
 }
 
 export default Register
