@@ -35,7 +35,24 @@ export const authSlice = createSlice({
             
         }
     },
-    extraReducers: () => {}
+    extraReducers: (builder) => {
+        //Handling the Pending, Fulfilled, and Reject states
+        builder
+            .addCase(register.pending, (state) => {
+                state.isLoading = true
+            })
+            .addCase(register.fulfilled, (state, action) =>{
+                state.isLoading = false
+                state.isSuccess = true
+                state.user = action.payload
+            })
+            .addCase(register.rejected, (state, action) =>{
+                state.isLoading = false
+                state.isError = true
+                state.message = action.payload
+                state.user = null
+            })
+    }
 })
 
 export const {reset} = authSlice.actions

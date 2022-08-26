@@ -1,4 +1,8 @@
 import React, { useEffect, useState } from 'react'
+import {useSelector, useDispatch} from 'react-redux'
+import {useNavigate} from 'react-router-dom'
+import {toast} from 'react-toastify'
+import {register, reset} from '../features/auth/authSlice'
 
 
 
@@ -11,6 +15,12 @@ function Register() {
     })
 
     const { name, email, password, passwordConfirm } = formData
+
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const {user, isLoading, usError, isSuccess, message} = useSelector(
+        (state) => state.auth)
 
     //Allows for typing within the input boxes
     const onnChange = (e) => {
