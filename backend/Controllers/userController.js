@@ -37,7 +37,8 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(201).json({
             _id: user.id,
             name: user.name,
-            email: user.email
+            email: user.email,
+            token: generateToken(user._id),
         })
     } else{
         res.status(400)
@@ -50,16 +51,44 @@ const registerUser = asyncHandler(async (req, res) => {
 //Route: /api/users/login
 //Public.
 const loginUser = asyncHandler(async (req, res) => {
-    res.json({message: 'Please Login!'})
+    const {email, password} = req.body
+
+    //check for valid email
+    const user = await UserModel.findOne({email})
+
+    if(user && (await bcrypt.compare(password, user.password))) {
+        res.json({
+            _id: user.id,
+            name: user.name,
+            email: user.email,
+            token: generateToken(user._id),
+        })
+    } else{
+        res.status(400)
+        throw new Error('Incorrect Credentials!')
+    }
+
 })
 
 //Gets user data via a GET Request. 
 //Route: /api/users/me
 //Public.
 const getMe = asyncHandler(async (req, res) => {
-    res.json({message: 'Displaying the data of a User!'})
+    const {_id, name, email} = await UserModel.findById(req.user._id)
+
+    res.status(200).json({
+        id: _id,
+        name,
+        email,
+    })
 })
 
+//Generate webToken
+const generateToken = (id) => {
+    return jwt.sign({id}, process.env.JWT_SECRET, {
+        expiresIn: '31d',
+    })
+}
 
 module.exports = {
     registerUser, loginUser, getMe,

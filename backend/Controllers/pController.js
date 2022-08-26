@@ -1,12 +1,13 @@
 const asyncHandler = require('express-async-handler')
 
 const PersonaModel = require('../models/personaModel')
+const UserModel = require('../models/userModel')
 
 //Gets a list of user's Personas via a GET Request. 
 //Route: /api/persona/
 //Private.
 const getPersonas = asyncHandler(async (req, res) => {
-const personas = await PersonaModel.find()
+const personas = await PersonaModel.find({user: req.user.id})
 
     res.status(200).json(personas)
 })
@@ -15,13 +16,17 @@ const personas = await PersonaModel.find()
 //Route: /api/persona/
 //Private.
 const createPersona = asyncHandler(async (req, res) => {
-    if(!req.body.text){
+    if(!req.body.nickname){
        res.status(400)
        throw new Error('Submit a proper persona!')
    }
     else{
         const personas = await PersonaModel.create({
-            nickname: req.body.nickname
+            nickname: req.body.nickname,
+            description: req.body.description,
+            uNames: req.body.uNames,
+            pWord: req.body.pWords,
+            user: req.user.id
         })
         res.status(200).json(personas)
     }
@@ -37,13 +42,24 @@ const updatePersona = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('Persona not found! Sure this one exists?')
     }
-    else{
-    const updateItem = await PersonaModel.findByIdAndUpdate(req.params.id, req.body, {new: true,})
-    res.status(200).json(updateItem)
-}
-    
 
+    const user = await UserModel.findById(req.user.id)
+
+    //Check if the user exists
+    if(!user){
+        res.status(401)
+        throw new Error('User not found!')
+    }
+
+    //Check if current user is the one who made the Persona
+    if(personas.user.toString() !== user.id){
+        res.status(401)
+        throw new Error('User not authorized to do this!')
+    }
     
+    const updatedItem = await PersonaModel.findByIdAndUpdate(req.params.id, req.body, {new: true,})
+
+    res.status(200).json(updatedItem)
 })
 
 //Deletes a user's Persona via a DELETE Request. 
@@ -56,10 +72,26 @@ const deletePersona = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('Persona not found! Sure this one existed?')
     }
-    else{
-        const deleteItem = await PersonaModel.remove()
-        res.status(200).json({id: req.params.id})
+    
+    const user = await UserModel.findById(req.user.id)
+
+    //Check if the user exists
+    if(!user){
+        res.status(401)
+        throw new Error('User not found!')
     }
+
+    //Check if current user is the one who made the Persona
+    if(personas.user.toString() !== user.id){
+        res.status(401)
+        throw new Error('User not authorized to do this!')
+    }
+
+    await personas.remove()
+
+
+    res.status(200).json({id: req.params.id})
+    
     
 })
 
