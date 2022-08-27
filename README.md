@@ -6,6 +6,15 @@ Have a persona with your real name but also one with a made-up psuedonym? Have t
 
 When you first come to the site you have to register a new user. Once that's done you're brought to the Persona Dashboard where you're able to fill in the Nickname, Description, Usernames, and Passwords fields. After pressing the submit button below you'll see that a new Persona has popped up underneath!
 
+You can't make a new Persona unless you're logged in. The Dashboard isn't visible. You also can't
+
+Create
+Read
+Update
+Destroy
+
+anyone else's Personas. It's tied to a user id and JWT token.
+
 | Technologies Used |
 | ----------------- |
 | Node              |
@@ -20,6 +29,7 @@ Requirements Met:
 Runs in a web browser!
 Has two collections: Users and Personas
 Responsive
+User auth. There's some JWT token auth too. The tokens are sent with pretty much all the CRUD functions.
 
 Unfinished Funtionality:
 I wanted to implement a way to hide and reveal the passwords shown, but ran out of time.
