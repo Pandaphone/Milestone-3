@@ -8,13 +8,14 @@ function PersonaCard({persona}) {
 
   return (
     <div className='persona'>
-        <div>
-            {new Date(persona.createdAt).toLocaleString('en-US')}
+        <div className='date'>
+            Created at : {new Date(persona.createdAt).toLocaleString('en-US')}
         </div>
         <h2>{persona.nickname}</h2>
-        <h2>{persona.description}</h2>
-        <h2>{persona.uNames}</h2>
-        <h2>{persona.pWords}</h2>
+        <p>{persona.description}</p>
+        <h4>{persona.uNames}</h4>
+        <h4>{persona.pWords}</h4>
+        
         <button onClick={() => dispatch(deletePersona(persona._id))} className="close">X</button>
     </div>
   )

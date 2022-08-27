@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
 
 * {
   margin: 0;
@@ -7,13 +7,15 @@
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Roboto', sans-serif;
   height: 100vh;
+  background-color: #212121;
+  color: #F2F2F2;
 }
 
 a {
   text-decoration: none;
-  color: #000;
+  color: #F2F2F2;
 }
 
 p {
@@ -25,7 +27,7 @@ ul {
 }
 
 li {
-  line-height: 2.2;
+  line-height: 2.0;
 }
 
 h1,
@@ -71,10 +73,6 @@ h3 {
   color: #777;
 }
 
-.header ul li a svg {
-  margin-right: 5px;
-}
-
 .heading {
   font-size: 2rem;
   font-weight: 700;
@@ -86,17 +84,38 @@ h3 {
   color: #828282;
 }
 
+.heading h3 {
+  font-family: cursive
+}
+
 .personas {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 10px;
 }
 
+.date {
+  color: #d3d3d3;
+  font-size: small;
+}
+
 .persona {
-  background-color: #f4f4f4;
+  background-color: #323F48;
   margin: 10px 0;
   padding: 20px 0 10px;
   position: relative;
+  border: 1px solid #f2f2f2;
+  border-radius: 10px;
+}
+
+.persona h2 {
+  border-bottom: 1px solid #e6e6e6;
+  font-family: cursive;
+  font-weight: 400;
+}
+
+.persona h4 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .persona .close {
@@ -133,14 +152,15 @@ h3 {
   text-align: left;
   display: block;
   margin: 0 0 5px 3px;
+  color: #F2F2F2;
 }
 
 .btn {
   padding: 10px 20px;
   border: 1px solid #000;
   border-radius: 5px;
-  background: #000;
-  color: #fff;
+  background: #788794;
+  color: #F2F2F2;
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
@@ -149,15 +169,6 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.btn svg {
-  margin-right: 8px;
-}
-
-.btn-reverse {
-  background: #fff;
-  color: #000;
 }
 
 .btn-block {
@@ -175,7 +186,7 @@ h3 {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgb(242, 242, 242);
   z-index: 5000;
   display: flex;
   justify-content: center;

@@ -39,7 +39,7 @@ function Dashboard() {
   <>
   <section className="heading">
     <h1>Welcome {user && user.name}!</h1>
-    <h3><strong>Who are you??</strong></h3>
+    <h3><em>Who are you?</em></h3>
   </section>
 
   <PersonaForm/>
