@@ -23,6 +23,7 @@ function PersonaForm() {
         }))
     }
     
+    //Passes the data set in the form
     const onnSubmit = (e) => {
         e.preventDefault()
 
