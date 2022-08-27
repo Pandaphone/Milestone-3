@@ -41,6 +41,22 @@ export const getPersonas = createAsyncThunk('persona/getAll', async (_, thunkAPI
     }
 })
 
+//Delete a Persona
+export const deletePersona = createAsyncThunk('persona/delete', async (id, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await personaService.deletePersona(id, token)
+    } catch (error) {
+        const message = 
+        (error.response && 
+            error.response.data && 
+            error.response.data.message) || 
+            error.message || 
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
 export const personaSlice = createSlice({
     name: 'persona',
     initialState,
@@ -71,6 +87,19 @@ export const personaSlice = createSlice({
                 state.personas = action.payload
             })
             .addCase(getPersonas.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload
+            })
+            .addCase(deletePersona.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(deletePersona.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.personas = state.personas.filter((persona) => persona._id !== action.payload.id)
+            })
+            .addCase(deletePersona.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload

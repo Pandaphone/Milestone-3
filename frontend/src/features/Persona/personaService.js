@@ -30,9 +30,24 @@ const getPersonas = async (token) => {
     return response.data
 }
 
+//Delete Persona
+//Send the token with to allow the user to do this
+const deletePersona = async (personaID, token) => {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    }
+
+    const response = await axios.delete(API_URL + personaID, config)
+
+    return response.data
+}
+
 const personaService = {
     createPersona,
     getPersonas,
+    deletePersona,
 }
 
 export default personaService

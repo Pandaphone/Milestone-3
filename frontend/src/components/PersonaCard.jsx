@@ -1,6 +1,11 @@
 import React from 'react'
+import {useDispatch} from 'react-redux'
+import {deletePersona} from '../features/Persona/personaSlice'
+
 
 function PersonaCard({persona}) {
+    const dispatch = useDispatch()
+
   return (
     <div className='persona'>
         <div>
@@ -10,6 +15,7 @@ function PersonaCard({persona}) {
         <h2>{persona.description}</h2>
         <h2>{persona.uNames}</h2>
         <h2>{persona.pWords}</h2>
+        <button onClick={() => dispatch(deletePersona(persona._id))} className="close">X</button>
     </div>
   )
 }
