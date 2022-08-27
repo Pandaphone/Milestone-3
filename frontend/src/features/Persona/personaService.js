@@ -7,8 +7,8 @@ const API_URL = '/api/persona/'
 const createPersona = async (personaData, token) => {
     const config = {
         headers: {
-            Authorization: `Bearer ${token}`
-        }
+            Authorization: `Bearer ${token}`,
+        },
     }
 
     const response = await axios.post(API_URL, personaData, config)
@@ -17,7 +17,7 @@ const createPersona = async (personaData, token) => {
 }
 
 const personaService = {
-    createPersona
+    createPersona,
 }
 
 export default personaService

@@ -25,7 +25,7 @@ const createPersona = asyncHandler(async (req, res) => {
             nickname: req.body.nickname,
             description: req.body.description,
             uNames: req.body.uNames,
-            pWord: req.body.pWords,
+            pWords: req.body.pWords,
             user: req.user.id
         })
         res.status(200).json(personas)

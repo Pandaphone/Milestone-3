@@ -9,7 +9,7 @@ function PersonaForm() {
         nickname: '',
         description: '',
         uNames: '',
-        pWords: '',
+        pWords: ''
     })
 
     const { nickname, description, uNames, pWords } = personaData
@@ -30,13 +30,15 @@ function PersonaForm() {
          nickname: '',
          description: '',
          uNames: '',
-         pWords: '',
+         pWords: ''
         }
+
         dispatch(createPersona(charData))
         
     } 
 
-  return <section className="form">
+  return (
+  <section className="form">
     <form onSubmit={onnSubmit}>
         <div className="form-group">
             <label htmlFor="nickname">Nickname:</label>
@@ -84,6 +86,7 @@ function PersonaForm() {
         </div>
     </form>
   </section>
+  )
 }
 
 export default PersonaForm
