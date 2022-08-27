@@ -25,6 +25,22 @@ export const createPersona = createAsyncThunk('persona/create', async (personaDa
     }
 })
 
+//Get Personas
+export const getPersonas = createAsyncThunk('persona/getAll', async (_, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token
+        return await personaService.getPersonas(token)
+    } catch (error) {
+        const message = 
+        (error.response && 
+            error.response.data && 
+            error.response.data.message) || 
+            error.message || 
+            error.toString()
+        return thunkAPI.rejectWithValue(message)
+    }
+})
+
 export const personaSlice = createSlice({
     name: 'persona',
     initialState,
@@ -42,6 +58,19 @@ export const personaSlice = createSlice({
                 state.personas.push(action.payload)
             })
             .addCase(createPersona.rejected, (state, action) => {
+                state.isLoading = false;
+                state.isError = true;
+                state.message = action.payload
+            })
+            .addCase(getPersonas.pending, (state) => {
+                state.isLoading = true;
+            })
+            .addCase(getPersonas.fulfilled, (state, action) => {
+                state.isLoading = false;
+                state.isSuccess = true;
+                state.personas = action.payload
+            })
+            .addCase(getPersonas.rejected, (state, action) => {
                 state.isLoading = false;
                 state.isError = true;
                 state.message = action.payload
