@@ -43,16 +43,14 @@ const updatePersona = asyncHandler(async (req, res) => {
         throw new Error('Persona not found! Sure this one exists?')
     }
 
-    const user = await UserModel.findById(req.user.id)
-
     //Check if the user exists
-    if(!user){
+    if(!req.user){
         res.status(401)
         throw new Error('User not found!')
     }
 
     //Check if current user is the one who made the Persona
-    if(personas.user.toString() !== user.id){
+    if(personas.user.toString() !== req.user.id){
         res.status(401)
         throw new Error('User not authorized to do this!')
     }
@@ -72,17 +70,15 @@ const deletePersona = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('Persona not found! Sure this one existed?')
     }
-    
-    const user = await UserModel.findById(req.user.id)
 
     //Check if the user exists
-    if(!user){
+    if(!req.user){
         res.status(401)
         throw new Error('User not found!')
     }
 
     //Check if current user is the one who made the Persona
-    if(personas.user.toString() !== user.id){
+    if(personas.user.toString() !== req.user.id){
         res.status(401)
         throw new Error('User not authorized to do this!')
     }
