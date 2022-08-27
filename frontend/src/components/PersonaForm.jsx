@@ -27,10 +27,10 @@ function PersonaForm() {
         e.preventDefault()
 
         const charData = {
-         nickname: '',
-         description: '',
-         uNames: '',
-         pWords: ''
+         nickname,
+         description,
+         uNames,
+         pWords,
         }
 
         dispatch(createPersona(charData))
